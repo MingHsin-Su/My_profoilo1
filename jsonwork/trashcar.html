@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>臺中市定時定點垃圾收運地點</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   <style>
+        /* CSS 樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f1f7;
+			font-size: 12px;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #f4f0e4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto; /* 讓表格在水平方向上可滾動 */
+			
+    
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+			margin: 0 auto;
+			
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle; /* 文字垂直置中 */
+            white-space: nowrap; /* 關鍵：不換行 */
+            overflow: hidden; /* 隱藏超出範圍的文字 */
+            text-overflow: ellipsis; /* 以省略號顯示超出範圍的文字 */
+			
+        }
+        th {
+            background-color: #e1ba7a;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+		tr:nth-child(odd) {
+			background-color: #ffffff; /*  白色背景 (或你想要的顏色)  */
+		}
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+        }
+		 .navbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		position: sticky;
+		top: 0;
+		background-color: white;
+		padding: 1rem;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		z-index: 100;
+		background-color: #f4f0e4; /* 淺灰色底色 */
+	}
+	
+	.navbar-logo {
+		height: 48px;
+		width: auto;
+		margin-right: 2rem;
+		margin-left: 10%;
+		display: block;
+	}
+	
+	.navbar ul {
+		list-style: none;
+		margin: 0;
+		padding-right: 68px;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 2rem;
+	}
+	
+	.navbar li {
+		margin: 0 20px;
+	}
+	
+	.navbar a {
+		text-decoration: none;
+		color: #555;
+		font-weight: bold;
+	}
+	
+	footer {
+		background-color: #f4f0e4;
+		padding: 20px 0; /* 移除水平 padding，讓 container 處理 */
+		font-size: 12px; /* 字體大小，與 body 相同 */
+		line-height: 1.6; /* 行高，與 body 相同 */
+	}
+
+	.contact-info {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin-bottom: 1em;
+		padding-left: 130px;  /* 保留原有的 padding-left */
+	}
+
+	.contact-info p {
+		margin: 0.5em 0;
+	}
+
+	.contact-info div {
+		display: flex;
+		align-items: center;
+		margin-bottom: 0.5em;
+	}
+
+	.contact-info i {
+		margin-right: 0.5em;
+		color: #333;
+	}
+
+	.social-icons {
+	   display: flex;
+	   justify-content: flex-start; /* 讓社交圖示靠左 */
+	   margin-top: 1em;
+	   padding-right: 30px;
+	}
+
+	.social-icons i {
+		margin-right: 0.5em;
+		font-size: 1.2em;
+		color: #333;
+	}
+
+	.copyright-container {
+		display: flex;
+		align-items: center; /* 垂直置中 */
+		justify-content: flex-end; /* 版權資訊靠右 */
+		height: 100%; /* 確保高度與左側聯絡資訊相同 */
+	}
+
+	.copyright {
+		text-align: right; /* 版權資訊文字靠右 */
+		padding-right: 100px; /* 與右邊界之間增加一些間距 */
+	}
+    </style>
+</head>
+<body>
+<nav class="navbar">
+	<img src="D:\htmlclass\PF\image\hsin.jpg" alt="logo" class="navbar-logo">
+		<ul>
+			<li><a href="D:\htmlclass\PF\index.html" class="nav-link active" id="about-link">關於我</a></li>
+			<li><a href="D:\htmlclass\PF\portfolio.html" class="nav-link" id="portfolio-link">作品集</a></li>
+			<li><a href="D:\htmlclass\PF\contact.html" class="nav-link" id="contact-link">聯絡我</a></li>
+		</ul>
+</nav>
+    <div class="container">
+        <h2>臺中市定時定點垃圾收運地點</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>區域</th>
+                    <th>里別</th>
+                    <th>車牌號碼</th>
+                    <th>地點</th>
+                    <th>任務類型</th>
+                    <th>開始時間</th>
+                    <th>結束時間</th>
+                </tr>
+            </thead>
+            <tbody id="row">
+                <!-- 資料將插入到這裡 -->
+            </tbody>
+        </table>
+    </div>
+<footer>
+<div class="footer_containe">  <!-- 新增 container -->
+	<div class="row">  <!-- 新增 row -->
+		<div class="contact-info">
+			<div><b>聯絡資訊:</b></div>
+			<div>
+				<i class="fa-solid fa-phone"></i> 0919-890-044
+			</div>
+			<div>
+				<i class="fa-solid fa-house"></i> 台南市安平區
+			</div>
+			<div>
+				<i class="fa-solid fa-envelope"></i> <a href="#">sally701010@yahoo.com.tw</a>
+			</div>
+			<div class="social-icons">
+				<i class="fa-brands fa-facebook"></i>
+				<i class="fa-brands fa-instagram"></i>
+				<i class="fa-brands fa-twitter"></i>
+			</div>
+		</div>
+	</div>
+	<div class="copyright">&copy; 2025 Su. Minghsin </div>
+</div>
+</footer>	
+</body>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: 'https://datacenter.taichung.gov.tw/swagger/OpenData/68d1a87f-7baa-4b50-8408-c36a3a7eda68',
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                const len = data.length;
+                console.log("資料長度:", len);
+
+                let html = "";
+                for (let i = 0; i < len; i++) {
+                    const record = data[i];
+
+                    html += `<tr>
+                                <td>${record.area}</td>
+                                <td>${record.village}</td>
+                                <td>${record.car_licence}</td>
+                                <td>${record.caption}</td>
+                                <td>${record.task_type}</td>
+                                <td>${record.g_d1_time_s}</td>
+                                <td>${record.g_d1_time_e}</td>
+                            </tr>`;
+                }
+                $("#row").html(html);
+            },
+            error: function(xhr, status, error) {
+                console.error("請求失敗:", status, error);
+                $("#loading").text("資料載入失敗"); // 顯示錯誤訊息
+            }
+        });
+    });
+</script>
+</html>
