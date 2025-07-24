@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>蘇明欣程式設計作品集</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+	<nav class="navbar">
+		<img src="image/hsin.jpg" alt="logo" class="navbar-logo">
+	<ul>
+		<li><a href="index.html" class="nav-link" id="about-link">關於我</a></li>
+		<li><a href="portfolio.html" class="nav-link active" id="portfolio-link">作品集</a></li>
+		<li><a href="contact.html" class="nav-link" id="contact-link">聯絡我</a></li>
+	</ul>
+</nav>
+<main id="content">
+	<section id="about" class="page-section">
+		<h1 class="page-title">作品集</h1>
+		<h4><b>購物車網站</b><h4>
+		<ul>
+			<li><a href="https://minghsin-su.github.io/My_htmlwork2/" target="_blank" class="nav-link">Happy Shop 二手商品網站</a></li>
+		</ul>
+		<h4><b>JSON檔製作表格</b><h4>
+		<ul>
+			<li><a href="jsonwork\Ubike.html" class="nav-link" id="portfolio-link">YouBike2.0臺北市公共自行車即時資訊</a></li>
+			<li><a href="jsonwork\airjson1.html" class="nav-link active" id="about-link">室內空氣品質公告場所定期檢測結果</a></li>
+			<li><a href="jsonwork\airjson2.html" class="nav-link" id="portfolio-link">空氣品質公告場所定檢資訊</a></li>
+			<li><a href="jsonwork\AQIjason.html" class="nav-link" id="portfolio-link">空氣品質指標(AQI)概況</a></li>
+			<li><a href="jsonwork\jquary1.html" class="nav-link" id="portfolio-link">廢污水產生與排放統計資料</a></li>
+			<li><a href="jsonwork\refuge.html" class="nav-link" id="portfolio-link">臺中市防空避難設備</a></li>
+			<li><a href="jsonwork\TaiChungEducation.html" class="nav-link" id="portfolio-link">臺中市各機關單位教育程度統計資料</a></li>
+			<li><a href="jsonwork\TaipaiMRT.html" class="nav-link" id="portfolio-link">臺北捷運車站資訊</a></li>
+			<li><a href="jsonwork\TCGStudent.html" class="nav-link" id="portfolio-link">臺中市高級中等學校應屆畢業生升學就業概況</a></li>
+			<li><a href="jsonwork\trashcar.html" class="nav-link" id="portfolio-link">臺中市定時定點垃圾收運地點</a></li>
+		</ul>
+		<h4><b>Python網路資料擷取</b><h4>
+		<ul>
+			<li><a href="https://hsin1010-twstockapp.hf.space" target="_blank" class="nav-link">股票比較分析工具</a></li>
+			<li><a href="https://hsin1010-aqiplotly.hf.space" target="_blank" class="nav-link">台灣各縣市平均AQI分析</a></li>
+		</ul>
+	</section>
+</main>
+	<script src="main.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script>
+	$(document).ready(function() {
+	$('.popup-link').magnificPopup({
+		type: 'image',
+		gallery:{
+			enabled:true
+			}
+		});
+	});
+  </script>
+ <footer>
+    <div class="container">  <!-- 新增 container -->
+        <div class="row">  <!-- 新增 row -->
+			<div class="contact-info">
+				<div><b>聯絡資訊:</b></div>
+				<div>
+					<i class="fa-solid fa-phone"></i> 0919-890-044
+				</div>
+				<div>
+					<i class="fa-solid fa-house"></i> 台南市安平區
+				</div>
+				<div>
+					<i class="fa-solid fa-envelope"></i> <a href="#">sally701010@yahoo.com.tw</a>
+				</div>
+				<div class="social-icons">
+					<i class="fa-brands fa-facebook"></i>
+					<i class="fa-brands fa-instagram"></i>
+					<i class="fa-brands fa-twitter"></i>
+				</div>
+			</div>
+		</div>
+		<div class="copyright">&copy; 2025 Su. Minghsin </div>
+
+    </div>
+</footer>
+</body>
+</html>
