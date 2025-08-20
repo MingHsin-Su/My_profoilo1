@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- TemplateMo 593 personal shape
+    https://templatemo.com/tm-593-personal-shape
+    -->
+	<style>
+	body {
+		font-family: Arial, sans-serif;
+		margin: 0px;
+		padding: 0px;
+		background-color: #f4f4f4;
+		font-size: 12px;
+		align:center;
+	}
+
+	
+
+	h3 {
+		margin-top:30px;
+		text-align: center;
+		color: #333;
+	}
+
+	p {
+	    margin-top:10px;
+		text-align: left;
+		margin: 20px 20px;
+	}
+
+	.loading {
+		text-align: center;
+		padding: 20px;
+		color: #777;
+	}
+
+	
+	.card {
+    margin-bottom: 20px;
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+	padding:10px auto;
+	weight:10px:
+	height:30px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    padding: 10px;
+	
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+   
+}
+
+.card-text {
+    color: #555;
+    font-size: 0.7rem;
+}
+.modal-title{
+	margin-bottom: 10px;
+}
+.btn{
+     margin-left:20px;
+	 margin-bottom: 10px;
+	 background-color:#2288264d;
+}
+.btn:hover{
+      background-color:#22882617;
+}
+	
+	footer {
+		background-color: #f4f0e4;
+		padding: 20px 0; /* 移除水平 padding，讓 container 處理 */
+		font-size: 12px; /* 字體大小，與 body 相同 */
+		line-height: 1.6; /* 行高，與 body 相同 */
+	}
+	</style>
+</head>
+<body>
+    <!-- Navigation -->
+   <nav class="navbar">
+	<img src="../image/hsin.jpg" alt="logo" class="navbar-logo">
+		<ul>
+			<li><a href="../index.html" class="nav-link active" id="about-link">關於我</a></li>
+			<li><a href="../portfolio.html" class="nav-link" id="portfolio-link">作品集</a></li>
+			<li><a href="../contact.html" class="nav-link" id="contact-link">聯絡我</a></li>
+		</ul>
+	</nav>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h3>農漁會年度百大農業精品好禮</h3>
+            <div id="character-container" class="row">  <!-- 使用 row 來排列卡片 -->
+                <p>載入中...</p>  <!-- 初始顯示的文字 -->
+            </div>
+        </div>
+        <!-- 彈跳視窗 (Modal) -->
+        <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">  <!--  加入 modal-dialog-scrollable  -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailModalLabel">詳細資料</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modal-body-content">
+                        <!-- 詳細資料將在此處顯示 -->
+                        <p>載入中...</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+    </ul>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>&copy; 2025 Personal Shape. All rights reserved.</p>
+                </div>
+                <div class="footer-right">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Use</a>
+                    <a href="#sitemap">Sitemap</a>
+                    <a href="https://templatemo.com" target="_blank" rel="noopener nofollow">Provided by TemplateMo</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="portfolio.js"></script>
+    <script>
+        const apiUrl = 'https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvAgriBestItem.aspx';
+
+        // 1. 獲取 API 資料
+        async function fetchData() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                return null;
+            }
+        }
+
+        // 2. 建立卡片 HTML
+        function createCardHTML(item) {
+            return `
+                <div class="col-md-4">  <!--  使用 Bootstrap 的欄位  -->
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-title"><b>${item.AgriBuyMainName}</b></p>
+                            <p class="card-text">
+                                <img class="card-img-top" src="${item.Photo}" alt="${item.Photo}"><br><br>
+                                品名: ${item.AgriBtItemNm}<br>
+                                產地: ${item.CountyName}<br>
+                                內容物:${item.AgriBtItemSpec}<br>
+                                訂購專線:${item.AgriTel}
+                            </p>
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#detailModal" data-item-cnt="${item.AgriBtItemCnt}">
+                                查看詳細資料
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 3. 建立詳細資料 HTML
+        function createDetailHTML(itemCnt) {
+            // 這裡可以根據 itemCnt 的資料，產生更詳細的 HTML
+            return `<p>${itemCnt}</p>`; // 簡單地顯示 AgriBtItemCnt
+        }
+
+        // 4. 顯示資料
+        async function displayData() {
+            const data = await fetchData();
+            const characterContainer = document.getElementById('character-container');
+
+            if (!data || data.length === 0) {
+                characterContainer.innerHTML = '<p>無法載入資料。</p>';
+                return;
+            }
+
+            // 產生卡片 HTML 程式碼
+            let cardsHTML = '';
+            data.forEach(item => {
+                cardsHTML += createCardHTML(item);
+            });
+
+            // 將 HTML 程式碼插入到 .row 中
+            characterContainer.innerHTML = cardsHTML;
+
+            // 5. 綁定點擊事件，顯示 Modal
+            bindModalEvents();
+        }
+
+        // 6. 綁定 Modal 事件
+        function bindModalEvents() {
+            const detailModal = document.getElementById('detailModal');
+            const modalBody = document.getElementById('modal-body-content');
+
+            document.querySelectorAll('.btn[data-bs-toggle="modal"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemCnt = this.dataset.itemCnt;
+                    if (itemCnt) {
+                        const detailHTML = createDetailHTML(itemCnt);
+                        modalBody.innerHTML = detailHTML;
+                    } else {
+                        modalBody.innerHTML = '<p>無法載入詳細資料。</p>';
+                    }
+                });
+            });
+        }
+
+        // 7. 初始化
+        displayData();
+    </script>
+</body>
+</html>
